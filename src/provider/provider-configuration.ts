@@ -2,7 +2,7 @@ import { Configuration, interactionPolicy } from 'oidc-provider';
 
 import { Account } from '../support/account';
 
-export class AppProviderConfiguration {
+export class ProviderConfiguration {
 
   getProviderConfiguration() : Configuration {
     // copies the default policy, already has login and consent prompt policies
