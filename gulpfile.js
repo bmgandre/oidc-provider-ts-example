@@ -1,5 +1,4 @@
-var gulp = require('gulp'),
-  exec = require('child_process').exec;
+var gulp = require('gulp');
 
 gulp.task('cp-views', function () {
   return gulp.src('./src/views/**/*.ejs')
