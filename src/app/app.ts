@@ -38,13 +38,13 @@ export class App {
     }
 
     private setTemplateEngine() {
-        this.appConfig.expressApp.set('views', resolve(__dirname, "views/"));
+        this.appConfig.expressApp.set('views', resolve(__dirname, "../views/"));
         this.appConfig.expressApp.set('view engine', 'ejs');
         this.appConfig.expressApp.engine('.ejs', ejs);
     }
 
     private setStaticAssets() {
-        const views = express.static(resolve(__dirname, "views/"));
+        const views = express.static(resolve(__dirname, "../views/"));
         this.appConfig.expressApp.use(views);
     }
 
