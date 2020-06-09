@@ -1,18 +1,18 @@
 import { Server } from 'http';
 import { resolve } from 'path';
 
-import { ProviderAppConfig } from './provider-app-config';
+import { AppConfig } from './app-config';
 
 // tslint:disable:no-var-requires
 const ejs = require("ejs").__express;
 // tslint:disable:no-var-requires
 const express = require('express');
 
-export class ProviderApp {
+export class App {
     private server: Server;
 
     constructor(
-        private appConfig: ProviderAppConfig
+        private appConfig: AppConfig
     ) {
         this.setMiddleware();
         this.setRoutes();
