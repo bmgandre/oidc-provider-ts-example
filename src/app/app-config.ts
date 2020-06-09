@@ -1,11 +1,11 @@
 import { Application } from 'express';
 import Provider, { Configuration } from 'oidc-provider';
 
-import { AppController } from './controllers/app-controller';
-import { AppMiddleware } from './middleware/app-middleware';
+import { AppController } from '../controllers/app-controller';
+import { AppMiddleware } from '../middleware/app-middleware';
 
-export class ProviderAppConfig {
-    constructor(init?: ProviderAppConfig) {
+export class AppConfig {
+    constructor(init?: AppConfig) {
         Object.assign(this, init);
     }
 

@@ -2,6 +2,8 @@ import * as dotenv from 'dotenv';
 import Provider from 'oidc-provider';
 import { resolve } from 'path';
 
+import { App } from './app/app';
+import { AppConfig } from './app/app-config';
 import { AbortController } from './controllers/abort-controller';
 import { ConfirmController } from './controllers/confirm-controller';
 import { ContinueController } from './controllers/continue-controller';
@@ -9,9 +11,7 @@ import { LoginController } from './controllers/login-controller';
 import { PromptController } from './controllers/prompt-controller';
 import { LoggerMiddleware } from './middleware/logger-middleware';
 import { RenderMiddleware } from './middleware/render-middleware';
-import { ProviderApp } from './provider-app';
-import { ProviderAppConfig } from './provider-app-config';
-import { AppProviderConfiguration } from './provider/app-provider-configuration';
+import { ProviderConfiguration } from './provider/provider-configuration';
 
 dotenv.config({ path: resolve(__dirname, "../.env") })
 
@@ -19,13 +19,13 @@ dotenv.config({ path: resolve(__dirname, "../.env") })
 const express = require('express');
 
 const expressApp = express();
-const providerConfiguration = new AppProviderConfiguration()
+const providerConfiguration = new ProviderConfiguration()
     .getProviderConfiguration();
 const port = +process.env.PORT;
 const issuer = `http://localhost:${port}`
 const provider = new Provider(issuer, providerConfiguration);
 
-const providerAppConfig = new ProviderAppConfig({
+const providerAppConfig = new AppConfig({
     provider,
     expressApp,
     port,
@@ -38,11 +38,11 @@ const providerAppConfig = new ProviderAppConfig({
         new LoginController(provider, expressApp)
     ],
     middleWares: [
-        new  LoggerMiddleware(expressApp),
+        new LoggerMiddleware(expressApp),
         new RenderMiddleware(expressApp)
     ]
 });
-const app = new ProviderApp(providerAppConfig);
+const app = new App(providerAppConfig);
 
 try {
     app.listen();
