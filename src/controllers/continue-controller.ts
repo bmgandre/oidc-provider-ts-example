@@ -13,7 +13,7 @@ export class ContinueController extends AppController {
     }
 
     initRoute(): void {
-        this.router.get('/interaction/:uid/continue', this.setNoCache,
+        this.router.post('/interaction/:uid/continue', this.setNoCache, this.body,
             async (req: Request, res: Response, next: NextFunction) => this.handleContinue(req, res, next));
     }
 
