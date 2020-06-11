@@ -14,7 +14,7 @@ export class LoginController extends AppController {
     }
 
     initRoute(): void {
-        this.router.get('/interaction/:uid/login', this.setNoCache,
+        this.router.post('/interaction/:uid/login', this.setNoCache, this.body,
             async (req: Request, res: Response, next: NextFunction) => this.handleLogin(req, res, next));
     }
 

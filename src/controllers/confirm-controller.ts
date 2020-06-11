@@ -13,7 +13,7 @@ export class ConfirmController  extends AppController {
     }
 
     initRoute(): void {
-        this.router.get('/interaction/:uid/confirm', this.setNoCache,
+        this.router.post('/interaction/:uid/confirm', this.setNoCache, this.body,
         async (req: Request, res: Response, next: NextFunction) => this.handleConfirm(req, res, next));
     }
 
