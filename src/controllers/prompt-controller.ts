@@ -43,15 +43,13 @@ export class PromptController extends AppController {
     const interaction = await this.provider.interactionDetails(req, res);
     const client = await this.provider.Client.find(interaction.params.client_id);
 
-    const session = interaction.session as any;
-    const id =  session ? session.accountId : undefined;
-
-    const account = await this.provider.Account.findAccount(null, id);
+    const accountId = interaction.session?.accountId as string;
+    const account = await this.provider.Account.findAccount(null, accountId);
     const accountClaims = account ? await account.claims('prompt', 'email', { email: null }, []) : undefined;
 
     return {
       uid: interaction.uid,
-      email: accountClaims ? accountClaims.email : undefined,
+      email: accountClaims?.email,
       client,
       title: titleMap.get(interaction.prompt.name),
       params: interaction.params,
