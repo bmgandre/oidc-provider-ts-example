@@ -39,11 +39,11 @@ try {
         port,
         providerConfiguration,
         controllers: [
-            new AbortController(provider, expressApp),
-            new ConfirmController(provider, expressApp),
-            new ContinueController(provider, expressApp),
             new PromptController(provider, expressApp),
-            new LoginController(provider, expressApp)
+            new LoginController(provider, expressApp),
+            new ContinueController(provider, expressApp),
+            new ConfirmController(provider, expressApp),
+            new AbortController(provider, expressApp),
         ],
         middleWares: [
             new LoggerMiddleware(expressApp),
